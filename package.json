@@ -1,0 +1,37 @@
+{
+  "name": "date-filter",
+  "version": "1.0.0",
+  "description": "Invest With Tribe",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node back-end/server",
+    "server": "nodemon back-end/server",
+    "client": "npm start --prefix front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node back-end/seeder",
+    "data:destroy": "node back-end/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+
+  },
+  "author": "Shivam Damre",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.10",
+    "nodemailer": "^6.7.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
