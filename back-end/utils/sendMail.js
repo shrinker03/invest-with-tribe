@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 
 const sendMail = (user) => {
     const transporter = nodemailer.createTransport({
+        url: 'https://invest-tribe.herokuapp.com/',
         service: 'gmail',
         auth: {
           user: process.env.EMAIL,
