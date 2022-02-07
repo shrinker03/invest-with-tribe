@@ -1,30 +1,21 @@
-import nodemailer from 'nodemailer'
+import sgMail from '@sendgrid/mail'
 
 const sendMail = (user) => {
-    const transporter = nodemailer.createTransport({
-        url: 'https://invest-tribe.herokuapp.com/',
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASS
-        }
-      });
-      
-    const mailOptions = {
-        from: process.env.EMAIL,
-        to: user.email,
-        subject: 'Welcome to invest with Tribe! Your investment journey starts here...',
-        text: `We're glad to onboard you.`,
-        html : { path: 'C:/Users/Acer/Workspace/React-Course/invest-with-tribe/date-filter/back-end/utils/mail-templates/beefree-la5dgdmfhr.html' },
-    };    
-
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  const msg = {
+    to: user.email, 
+    from: process.env.EMAIL,
+    subject: 'Sending with SendGrid is Fun',
+    templateId: 'd-230989d6ebc947749ac21dee6f3968d0'
+  }
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent')
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
 export default sendMail
